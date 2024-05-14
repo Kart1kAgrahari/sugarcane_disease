@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sugarcane Leaf Disease Detection</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        
+        /* Navbar Styles */
+        .nav-area {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+            margin: 0; /* Ensures there's no extra margin */
+        }
+
+        .nav-area li {
+            margin: 0 10px;
+        }
+
+        .nav-area li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .nav-area li a:hover {
+            color: #ffe15d;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                       url('https://media.istockphoto.com/id/800520452/photo/sugar-cane-leaves-with-dew.webp?b=1&s=170667a&w=0&k=20&c=vwUcsU8dN6ipWPkYEVau6RIxtnjTWURmKG2hZZaq8k0=');
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            color: #ffe15d;
+            text-shadow: 2px 2px black;
+        }
+
+        .header h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .header form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header form input[type="file"] {
+            display: none;
+        }
+
+        .header form label {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .header form label:hover {
+            background-color: green;
+            color: white.
+        }
+
+        .header form input[type="submit"] {
+            background: transparent.
+            color: white.
+            border: 1px solid white.
+            padding: 10px.
+            font-size: 18px.
+            cursor: pointer.
+            transition: 0.3s.
+        }
+
+        .header form input[type="submit"]:hover {
+            background: green.
+            color: white.
+        }
+
+        /* Disease Details Section */
+        .disease-details {
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .disease-box {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .disease-box:hover {
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3).
+        }
+
+        .disease-box h3 {
+            color: #333.
+            margin-bottom: 10px.
+        }
+
+        .disease-box p {
+            color: #555.
+            margin: 10px 0.
+        }
+
+        .disease-box a {
+            color: #007bff.
+            text-decoration: none.
+            transition: 0.3s.
+        }
+
+        .disease-box a:hover {
+            text-decoration: underline.
+        }
+
+        
+        /* Footer Section */
+        .footer {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin: 0; /* Ensures no additional margin */
+        }
+        
+        .footer a {
+            color: #ffe15d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 30px.
+            }
+
+            .header form {
+                flex-direction: column.
+            }
+
+            .nav-area {
+                justify-content: center.
+            }
+
+            .disease-details {
+                flex-direction: column.
+                padding: 10px.
+            }
+
+            .disease-box {
+                margin: 10px 0.
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-area">
+            <li><a href="http://127.0.0.1:8000/">Home</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Sugarcane Leaf Disease Detection</h1>
+        <form method="post" enctype="multipart/form-data" action="predictImage">
+            <!-- CSRF token placeholder -->
+            {% csrf_token %}
+            <input type="file" id="files" name="filePath" />
+            <label for="files">Select File</label>
+            <input type="submit" value="Submit" />
+        </form>
+    </header>
+
+    <!-- Disease Details Section -->
+    <section class="disease-details">
+        <div class="disease-box">
+            <h3>Bacterial Blight</h3>
+            <p>This disease causes elongated brown streaks on the leaves, often surrounded by yellow halos. It can lead to reduced sugar content and affect crop yield.</p>
+            <a href="https://en.wikipedia.org/wiki/Bacterial_blight" target="_blank">Learn More</a>
+        </div>
+
+        <div class="disease-box">
+            <h3>Mosaic</h3>
+            <p>Mosaic disease is characterized by patchy light and dark green patterns on the leaves. It's caused by a virus and can lead to stunted growth and reduced yield.</p>
+            <a href="https://en.wikipedia.org/wiki/Sugarcane_mosaic_virus" target="_blank">Learn More</a>
+        </div>
+
+        <div class="disease-box">
+            <h3>RedRot</h3>
+            <p>RedRot causes internal discoloration and red streaks within the stalk, often with a foul odor. It can result in significant crop loss.</p>
+            <a href="https://en.wikipedia.org/wiki/Red_rot" target="_blank">Learn More</a>
+        </div>
+
+        <div class="disease-box">
+            <h3>Rust</h3>
+            <p>Rust manifests as orange to reddish-brown pustules on the leaves, often leading to premature leaf drop and reduced photosynthesis.</p>
+            <a href="https://en.wikipedia.org/wiki/Rust_(fungus)" target="_blank">Learn More</a>
+        </div>
+
+        <div class="disease-box">
+            <h3>Yellow Leaf</h3>
+            <p>Yellow Leaf disease turns leaves yellow, especially near the midrib. It's caused by a phytoplasma and can severely impact sugar production.</p>
+            <a href="https://en.wikipedia.org/wiki/Phytoplasma" target="_blank">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <p>&copy; 2024 Sugarcane Leaf Disease Detection. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
